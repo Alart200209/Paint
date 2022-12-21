@@ -68,12 +68,12 @@ public class Server {
 
                                 boardName = splitMessage[1];
                                 synchronized (boards) {
-                                    boards.put(boardName, new BufferedImage(1024, 768, BufferedImage.TYPE_INT_RGB));
+                                    boards.put(boardName, new BufferedImage(800, 600, BufferedImage.TYPE_INT_RGB));
                                     graphics = boards.get(boardName).createGraphics();
                                 }
                                 synchronized (boards.get(boardName)) {
                                     graphics.setColor(Color.white);
-                                    graphics.fillRect(0, 0, 1024, 768);
+                                    graphics.fillRect(0, 0, 800, 600);
                                 }
                                 synchronized (consoleSynch) {
                                     System.out.println("Доска \"" + boardName + "\" создана");
@@ -104,7 +104,7 @@ public class Server {
                                 }
                                 int[] rgbArray = new int[480000];
                                 synchronized (boards.get(boardName)) {
-                                    boards.get(boardName).getRGB(0, 0, 1024, 768, rgbArray, 0, 800);
+                                    boards.get(boardName).getRGB(0, 0, 800, 600, rgbArray, 0, 800);
                                 }
                                 synchronized (this) {
                                     for (int i = 0; i < rgbArray.length; i++) {

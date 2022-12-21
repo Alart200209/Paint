@@ -57,10 +57,10 @@ public class Client {
 
                              //СОЗДАНИЕ ДОСКИ
                             if (splitMessage[1].equals("OK")) {
-                                board = new BufferedImage(1024, 768, BufferedImage.TYPE_INT_RGB);
+                                board = new BufferedImage(800, 600, BufferedImage.TYPE_INT_RGB);
                                 graphics = board.createGraphics();
                                 graphics.setColor(Color.white);
-                                graphics.fillRect(0, 0, 1024, 768);
+                                graphics.fillRect(0, 0, 800, 600);
                                 isConnected = true;
                                 frame.remove(menu);
                                 frame.add(boardPanel);
@@ -78,8 +78,8 @@ public class Client {
                                     message = readSocket.readLine();
                                     rgbArray[i] = Integer.parseInt(message);
                                 }
-                                board = new BufferedImage(1024, 768, BufferedImage.TYPE_INT_RGB);
-                                board.setRGB(0, 0, 1024, 768, rgbArray, 0, 800);
+                                board = new BufferedImage(800, 600, BufferedImage.TYPE_INT_RGB);
+                                board.setRGB(0, 0, 800, 600, rgbArray, 0, 800);
                                 graphics = board.createGraphics();
                                 isConnected = true;
                                 frame.remove(menu);
@@ -136,7 +136,7 @@ public class Client {
 
         // ГРАФИКА
         frame = new JFrame("MultiPaint");
-        frame.setSize(1024, 768); // размер окна
+        frame.setSize(800, 600); // размер окна
         frame.setResizable(false); // нельзя менять размер окна
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // закрытие программы
         frame.setLayout(null);
@@ -144,13 +144,13 @@ public class Client {
 
         // ПАНЕЛЬ РИСОВАНИЯ
         boardPanel = new BoardPanel();
-        boardPanel.setBounds(40, 0, 1000, 1024);
+        boardPanel.setBounds(40, 0, 800, 600);
         boardPanel.setOpaque(true);
         mainColor = Color.white; // Color нынешний цвет
 
         // ПАНЕЛЬ МЕНЮ
         menu = new JPanel();
-        menu.setBounds(40, 0, 1000, 1024);
+        menu.setBounds(40, 0, 800, 600);
         menu.setBackground(mainColor);
         menu.setLayout(null);
         frame.add(menu);
@@ -265,7 +265,7 @@ public class Client {
 
         // ПАНЕЛЬ С ИНСТРУМЕНТАМИ
         JToolBar toolbar = new JToolBar("Toolbar", JToolBar.VERTICAL);
-        toolbar.setBounds(0, 0, 40, 768); // размещение
+        toolbar.setBounds(0, 0, 40, 600); // размещение
         toolbar.setLayout(null); // элементы размещаем сами
         toolbar.setFloatable(false); // нельзя перетаскивать
         toolbar.setBorderPainted(false); // без рамок
@@ -347,6 +347,21 @@ public class Client {
         });
         toolbar.add(size30Button);
 
+        // СТЕРКА
+        JButton ErasorButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Erasor.png")));
+        ErasorButton.setBounds(0, 200, 40, 40);//расположение кнопки
+        ErasorButton.setBorderPainted(false);
+        ErasorButton.setBackground(Color.lightGray);
+        ErasorButton.setOpaque(false);
+        ErasorButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                mainColor = Color.white;
+                toolbar.setBackground(Color.white);
+                menu.setBackground(Color.white);
+            }
+        });
+        toolbar.add(ErasorButton);
+
         // ЦВЕТ БЕЛЫЙ
         JButton whiteButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("white.png")));
         whiteButton.setBounds(0, 240, 40, 40);//расположение кнопки
@@ -356,8 +371,8 @@ public class Client {
         whiteButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 mainColor = Color.white;
-                toolbar.setBackground(mainColor);
-                menu.setBackground(mainColor);
+                toolbar.setBackground(Color.white);
+                menu.setBackground(Color.white);
             }
         });
         toolbar.add(whiteButton);
@@ -371,7 +386,7 @@ public class Client {
         blackButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 mainColor = Color.black;
-                toolbar.setBackground(mainColor);
+                toolbar.setBackground(Color.white);
                 menu.setBackground(Color.white);
             }
         });
@@ -386,7 +401,7 @@ public class Client {
         redButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 mainColor = Color.red;
-                toolbar.setBackground(mainColor);
+                toolbar.setBackground(Color.white);
                 menu.setBackground(Color.white);
             }
         });
@@ -401,7 +416,7 @@ public class Client {
         orangeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 mainColor = Color.orange;
-                toolbar.setBackground(mainColor);
+                toolbar.setBackground(Color.white);
                 menu.setBackground(Color.white);
             }
         });
@@ -416,7 +431,7 @@ public class Client {
         yellowButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 mainColor = Color.yellow;
-                toolbar.setBackground(mainColor);
+                toolbar.setBackground(Color.white);
                 menu.setBackground(Color.white);
             }
         });
@@ -431,7 +446,7 @@ public class Client {
         greenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 mainColor = Color.green;
-                toolbar.setBackground(mainColor);
+                toolbar.setBackground(Color.white);
                 menu.setBackground(Color.white);
             }
         });
@@ -446,7 +461,7 @@ public class Client {
         cyanButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 mainColor = Color.cyan;
-                toolbar.setBackground(mainColor);
+                toolbar.setBackground(Color.white);
                 menu.setBackground(Color.white);
             }
         });
@@ -461,7 +476,7 @@ public class Client {
         blueButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 mainColor = Color.blue;
-                toolbar.setBackground(mainColor);
+                toolbar.setBackground(Color.white);
                 menu.setBackground(Color.white);
             }
         });
@@ -476,7 +491,7 @@ public class Client {
         magentaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 mainColor = Color.magenta;
-                toolbar.setBackground(mainColor);
+                toolbar.setBackground(Color.white);
                 menu.setBackground(Color.white);
             }
         });
